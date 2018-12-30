@@ -49,7 +49,7 @@ try:
                                  inject64=self.get_inject64(),
                                  inject_func=self.get_inject_func())
     else:
-        from dmoj.cptbox import SecurePopen, PIPE, CHROOTSecurity, syscalls
+        from dmoj.cptbox import SecurePopen, PIPE, CHROOTSecurity, StatsSecurity, syscalls
         from dmoj.cptbox.handlers import ALLOW
 
         BASE_FILESYSTEM = ['/dev/(?:null|tty|zero|u?random)$',
@@ -91,9 +91,9 @@ try:
                 return sec
 
             def get_security(self, launch_kwargs=None):
-                if CHROOTSecurity is None:
+                if StatsSecurity is None:
                     raise NotImplementedError('No security manager on Windows')
-                sec = CHROOTSecurity(self.get_fs())
+                sec = StatsSecurity(CHROOTSecurity(self.get_fs()))
                 return self._add_syscalls(sec)
 
             def get_fs(self):

@@ -208,6 +208,7 @@ class SecurePopen(six.with_metaclass(SecurePopenMeta, Process)):
                 raise RuntimeError('failed to ptrace child, check Yama config '
                                    '(https://www.kernel.org/doc/Documentation/security/Yama.txt, should be '
                                    'at most 1); if running in Docker, must run container with `--privileged`')
+        if -1 in self._security: self._security[-1]()
         return self.returncode
 
     def poll(self):

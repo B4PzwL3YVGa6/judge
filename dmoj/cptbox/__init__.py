@@ -3,6 +3,7 @@ from collections import defaultdict
 from dmoj.cptbox.sandbox import SecurePopen, PIPE
 from dmoj.cptbox.handlers import DISALLOW, ALLOW
 from dmoj.cptbox.chroot import CHROOTSecurity
+from dmoj.cptbox.stats import StatsSecurity
 from dmoj.cptbox.syscalls import SYSCALL_COUNT
 
 

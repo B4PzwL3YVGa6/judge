@@ -68,8 +68,8 @@ class GCCExecutor(CompiledExecutor):
         return GCC_COMPILE
 
     def get_security(self, launch_kwargs=None):
-        from dmoj.cptbox import CHROOTSecurity
-        return self._add_syscalls(CHROOTSecurity(self.get_fs(), writable=self._writable))
+        from dmoj.cptbox import StatsSecurity, CHROOTSecurity
+        return self._add_syscalls(StatsSecurity(CHROOTSecurity(self.get_fs(), writable=self._writable)))
 
     def get_env(self):
         env = super(GCCExecutor, self).get_env() or {}
